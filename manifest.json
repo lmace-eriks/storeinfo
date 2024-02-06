@@ -1,0 +1,19 @@
+{
+  "vendor": "eriksbikeshop",
+  "name": "storeinfo",
+  "version": "1.0.0",
+  "title": "StoreInfo",
+  "description": "StoreInfo component",
+  "defaultLocale": "pt-BR",
+  "builders": {
+    "messages": "1.x",
+    "store": "0.x",
+    "react": "3.x"
+  },
+  "dependencies": {
+    "vtex.styleguide": "9.x",
+    "vtex.css-handles": "0.x",
+    "vtex.device-detector": "0.x"
+  },
+  "$schema": "https://raw.githubusercontent.com/vtex/node-vtex-api/master/gen/manifest.schema"
+}

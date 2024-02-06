@@ -1,0 +1,6 @@
+{
+  "storeinfo": {
+    "component": "StoreInfo",
+    "composition": "children"
+  }
+}

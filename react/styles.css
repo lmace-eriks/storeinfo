@@ -1,0 +1,273 @@
+.container {
+}
+
+.mapContainer {
+}
+
+.storeInfoContainer,
+.mapContainer,
+.nearbyStoresContainer {
+}
+
+.storeInfoWrapper {
+}
+
+.heroContainer {
+}
+
+.heroImage {
+}
+
+.heroTextContainer {
+}
+
+.heroTextWrapper {
+}
+
+.storeNameContainer {
+}
+
+.heroSubtitle {
+}
+
+.heroCTALink {
+}
+
+.heroCTALink,
+.storeDirectionsLink,
+.nearbyStoreLink {
+}
+
+.storeGrid {
+}
+
+.storeGrid[data-nearby-stores='false'] {
+}
+
+.storeInfoTitle,
+.nearbyStoresTitle,
+.aboutStoreTitle,
+.reviewsTitle,
+.storeServicesTitle,
+.learnMoreTitle {
+}
+
+.storeAddress,
+.storePhone {
+}
+
+.storeDirectionsLink {
+}
+
+.storeAddressTitle,
+.storePhoneTitle,
+.storeHoursTitle {
+}
+
+.hoursTitleContainer {
+}
+
+.storeHours {
+}
+
+.storeOpenStatus {
+}
+
+.nearbyStoreslist {
+}
+
+.nearbyStore {
+}
+
+.nearbyStoreName {
+}
+
+.nearbyStoreAddress {
+}
+
+[data-store-open-status='co'] {
+}
+
+[data-store-open-status='os'],
+[data-store-open-status='cs'] {
+}
+
+[data-store-open-status='cc'],
+[data-store-open-status='tc'] {
+}
+
+.aboutLocationContainer,
+.reviewsContainer,
+.servicesPhotosProducts,
+.learnMoreContainer {
+}
+
+.learnMoreButton {
+}
+
+.learnMoreTitle {
+}
+
+.learnMoreButtonImage {
+}
+
+.learnMoreWindow {
+}
+
+.learnMoreContainer[data-expanded='true'] .learnMoreWindow {
+}
+
+.learnMoreContainer[data-expanded='true'] .learnMoreButtonImage {
+}
+
+.aboutStoreTitle {
+}
+
+.storeDescription {
+}
+
+.servicesPhotosProducts {
+}
+
+.storeServicesContainer {
+}
+
+.storeProductsContainer {
+}
+
+.storeServicesList {
+}
+
+.seasonalText {
+}
+
+.storeServicesItem {
+}
+
+.storeImagesSection {
+}
+
+.tracks {
+}
+
+.train {
+}
+
+.car {
+}
+
+.dotsContainer {
+}
+
+.dot {
+}
+
+.dot[data-active='true'] {
+}
+
+.buttonContainer {
+}
+
+.directionButton {
+}
+
+.directionButton[data-point='left'] .buttonImage {
+}
+.directionButton[data-point='right'] .buttonImage {
+}
+
+.buttonImage {
+}
+
+.reviewsFrame {
+}
+
+.productsAndServices {
+}
+
+.heroImage {
+}
+
+.heroTextContainer {
+}
+
+.storeNameContainer {
+}
+
+.heroTextWrapper {
+}
+
+.heroSubtitle {
+}
+
+.storeGrid,
+.aboutLocationContainer,
+.servicesPhotosProducts,
+.reviewsContainer,
+.learnMoreContainer {
+}
+
+.storeInfoTitle,
+.nearbyStoresTitle,
+.aboutStoreTitle,
+.reviewsTitle,
+.storeServicesTitle,
+.learnMoreTitle {
+}
+
+.storeInfoContainer,
+.nearbyStoresContainer {
+}
+
+.mapContainer {
+}
+
+.nearbyStoreslist {
+}
+
+.servicesPhotosProducts {
+}
+
+.storeImagesSection {
+}
+
+.tracks {
+}
+
+.car {
+}
+
+.reviewsFrame {
+}
+
+/* Keep below rules in app, they are illigal in store-theme. - LM */
+
+.mapContainer > div {
+  border: 1px solid var(--30-dark);
+}
+
+.storeDescription p {
+  margin-top: 0;
+}
+
+.storeDescription a,
+.learnMoreWindow a {
+  color: inherit;
+}
+
+br,
+b {
+  display: none;
+}
+
+li .seasonalText {
+  position: absolute;
+  width: 0;
+  height: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+li .seasonalStar {
+  display: none;
+}

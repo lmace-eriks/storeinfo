@@ -10,6 +10,10 @@ interface StoreInfoProps {
   blockClass: string
   storeDetails: Array<StoreObject>
   defaultHero: HeroObject
+  override: boolean
+  overrideSubtitle: string
+  overrideCTAlink: string
+  overrideCTAtext: string
 }
 
 interface StoreObject {
@@ -76,7 +80,7 @@ const defaultSEOHTML = "<p>       Our shop features a huge selection of bikes ye
 const defaultServices = ["Bike Repair", "Electric Bike Repair", "Bike Sizing", "Leasing *"];
 const defaultProducts = ["Bikes", "Electric Bikes", "Car Racks", "Snowboards *", "Skis *", "Apparel", "Skateboards", "Longboards", "Scooters"];
 
-const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, storeDetails, defaultHero }) => {
+const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, storeDetails, defaultHero, override, overrideSubtitle, overrideCTAlink, overrideCTAtext }) => {
   // const { isMobile } = useDevice();
 
   // State
@@ -275,7 +279,7 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
     <section aria-labelledby="about-store-title" className={styles.aboutLocationContainer}>
       <h2 id="about-store-title" className={styles.aboutStoreTitle}>Store Location Not Found</h2>
       <p className={styles.storeDescription}>Please check the link provided and try again.</p>
-      <Link href="/stores" className={styles.heroCTALink}>Go to Store List</Link>
+      <Link to="/stores" className={styles.heroCTALink}>Go to Store List</Link>
     </section>
   )
 
@@ -286,17 +290,31 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
           <source media="(min-width:1026px)" srcSet={storeInfo.hero.desktopSrc} type="image/jpeg" />
           <source media="(max-width:1025px)" srcSet={storeInfo.hero.mobileSrc} type="image/jpeg" />
           {/* @ts-ignore fetchpriority is not recognized - LM */}
-          <img src={storeInfo.heroMobile} width={450} height={450} fetchpriority="high" loading="eager" alt="Outside of Erik's Store." className={styles.heroImage} />
+          <img src={storeInfo.heroMobile} width={450} height={450} fetchPriority="high" loading="eager" alt="Outside of Erik's Store." className={styles.heroImage} />
         </picture>
         <div className={styles.heroTextContainer}>
           <div className={styles.storeNameContainer}>
             <StoreName />
           </div>
           <div className={styles.heroTextWrapper}>
-            {(storeInfo.hero.subtitle || defaultHero.subtitle) &&
-              <div className={styles.heroSubtitle}>{storeInfo.hero.subtitle || defaultHero.subtitle}</div>}
-            {(storeInfo.hero.ctaText || defaultHero.ctaText) &&
-              <Link href={storeInfo.hero.ctaLink || defaultHero.ctaLink} aria-label={storeInfo.hero.ctaAltText || defaultHero.ctaAltText} className={styles.heroCTALink}>{storeInfo.hero.ctaText || defaultHero.ctaText}</Link>}
+            {override ?
+              <>
+                <div className={styles.heroSubtitle}>
+                  {overrideSubtitle}
+                </div>
+                {overrideCTAlink && <Link to={overrideCTAlink} className={styles.heroCTALink}>{overrideCTAtext}</Link>}
+              </>
+              :
+              <>
+                {(storeInfo.hero.subtitle || defaultHero.subtitle) &&
+                  <div className={styles.heroSubtitle}>
+                    {storeInfo.hero.subtitle || defaultHero.subtitle}
+                  </div>}
+                {(storeInfo.hero.ctaText || defaultHero.ctaText) &&
+                  <Link to={storeInfo.hero.ctaLink || defaultHero.ctaLink} aria-label={storeInfo.hero.ctaAltText || defaultHero.ctaAltText} className={styles.heroCTALink}>{storeInfo.hero.ctaText || defaultHero.ctaText}</Link>}
+              </>
+            }
+
           </div>
         </div>
       </section>
@@ -344,7 +362,7 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
                 <li key={location.storeLink} className={styles.nearbyStore}>
                   <div className={styles.nearbyStoreName}>{location.__editorItemTitle}</div>
                   <div className={styles.nearbyStoreAddress}>{location.storeAddress}</div>
-                  <Link href={location.storeLink} aria-label={`${location.__editorItemTitle}'s store details`} className={styles.nearbyStoreLink}>Store Details</Link>
+                  <Link to={location.storeLink} aria-label={`${location.__editorItemTitle}'s store details`} className={styles.nearbyStoreLink}>Store Details</Link>
                 </li>
               ))}
             </ul>
@@ -606,7 +624,6 @@ StoreInfo.schema = {
           description: "For Screen Readers.",
           default: "",
           widget: { "ui:widget": "textarea" }
-
         },
         ctaLink: {
           title: "Default CTA Link",
@@ -617,6 +634,32 @@ StoreInfo.schema = {
         },
       },
     },
+    override: {
+      title: "Use Override?",
+      type: "boolean",
+      default: false
+    },
+    overrideSubtitle: {
+      title: "Override Subtitle",
+      description: "Example: Closed for [holiday]",
+      type: "string",
+      default: "",
+      widget: { "ui:widget": "textarea" }
+    },
+    overrideCTAtext: {
+      title: "Override CTA Text",
+      description: "Optional",
+      type: "string",
+      default: "",
+      widget: { "ui:widget": "textarea" }
+    },
+    overrideCTAlink: {
+      title: "Override CTA Link",
+      description: "Optional",
+      type: "string",
+      default: "",
+      widget: { "ui:widget": "textarea" }
+    }
   }
 };
 

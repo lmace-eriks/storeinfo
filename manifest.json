@@ -1,7 +1,7 @@
 {
   "vendor": "eriksbikeshop",
   "name": "storeinfo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "title": "StoreInfo",
   "description": "StoreInfo component",
   "defaultLocale": "pt-BR",

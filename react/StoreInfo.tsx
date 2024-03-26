@@ -14,6 +14,8 @@ interface StoreInfoProps {
   overrideSubtitle: string
   overrideCTAlink: string
   overrideCTAtext: string
+  closeAllStores: boolean
+  closeAllStoresText: string
 }
 
 interface StoreObject {
@@ -80,7 +82,7 @@ const defaultSEOHTML = "<p>       Our shop features a huge selection of bikes ye
 const defaultServices = ["Bike Repair", "Electric Bike Repair", "Bike Sizing", "Leasing *"];
 const defaultProducts = ["Bikes", "Electric Bikes", "Car Racks", "Snowboards *", "Skis *", "Apparel", "Skateboards", "Longboards", "Scooters"];
 
-const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, storeDetails, defaultHero, override, overrideSubtitle, overrideCTAlink, overrideCTAtext }) => {
+const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, storeDetails, defaultHero, override, overrideSubtitle, overrideCTAlink, overrideCTAtext, closeAllStores, closeAllStoresText }) => {
   // const { isMobile } = useDevice();
 
   // State
@@ -126,6 +128,10 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
         setNearbyLocations([]);
       }
 
+      if (closeAllStores) {
+        setStoreOpenStatus("cas");
+        return;
+      }
 
       if (currentStoreDetails!.closed) {
         setStoreOpenStatus("tc");
@@ -341,6 +347,7 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
                   {storeOpenStatus === "cs" && `Closing Soon`}
                   {storeOpenStatus === "cc" && `Currently CLOSED`}
                   {storeOpenStatus === "tc" && `Temporarily CLOSED`}
+                  {storeOpenStatus === "cas" && <div className={styles.closeAllStores}>{closeAllStoresText}</div>}
                   {storeOpenStatus === "" && ``}
                 </div>
               </div>
@@ -656,6 +663,17 @@ StoreInfo.schema = {
     overrideCTAlink: {
       title: "Override CTA Link",
       description: "Optional",
+      type: "string",
+      default: "",
+      widget: { "ui:widget": "textarea" }
+    },
+    closeAllStores: {
+      title: "Close All Stores?",
+      type: "boolean",
+      default: false
+    },
+    closeAllStoresText: {
+      title: "Close All Stores Message",
       type: "string",
       default: "",
       widget: { "ui:widget": "textarea" }

@@ -1,251 +1,232 @@
-.container {
-}
+.container {}
 
-.mapContainer {
-}
+.mapContainer {}
 
 .storeInfoContainer,
 .mapContainer,
-.nearbyStoresContainer {
-}
+.nearbyStoresContainer {}
 
-.storeInfoWrapper {
-}
+.storeInfoWrapper {}
 
 .heroContainer {
+  position: relative;
 }
 
-.heroImage {
-}
+.heroImage {}
 
-.heroTextContainer {
-}
+.heroTextContainer {}
 
-.heroTextWrapper {
-}
+.heroTextWrapper {}
 
-.storeNameContainer {
-}
+.storeNameContainer {}
 
-.heroSubtitle {
-}
+.heroSubtitle {}
 
-.heroCTALink {
-}
+.heroCTALink {}
 
 .heroCTALink,
 .storeDirectionsLink,
-.nearbyStoreLink {
-}
+.nearbyStoreLink {}
 
-.storeGrid {
-}
+.storeGrid {}
 
-.storeGrid[data-nearby-stores='false'] {
-}
+.storeGrid[data-nearby-stores='false'] {}
 
 .storeInfoTitle,
 .nearbyStoresTitle,
 .aboutStoreTitle,
 .reviewsTitle,
 .storeServicesTitle,
-.learnMoreTitle {
-}
+.learnMoreTitle {}
 
 .storeAddress,
-.storePhone {
-}
+.storePhone {}
 
-.storeDirectionsLink {
-}
+.storeDirectionsLink {}
 
 .storeAddressTitle,
 .storePhoneTitle,
-.storeHoursTitle {
-}
+.storeHoursTitle {}
 
-.hoursTitleContainer {
-}
+.hoursTitleContainer {}
 
-.storeHours {
-}
+.storeHours {}
 
-.storeOpenStatus {
-}
+.storeOpenStatus {}
 
-.nearbyStoreslist {
-}
+.nearbyStoreslist {}
 
-.nearbyStore {
-}
+.nearbyStore {}
 
-.nearbyStoreName {
-}
+.nearbyStoreName {}
 
-.nearbyStoreAddress {
-}
+.nearbyStoreAddress {}
 
-[data-store-open-status='co'] {
-}
+[data-store-open-status='co'] {}
 
 [data-store-open-status='os'],
-[data-store-open-status='cs'] {
-}
+[data-store-open-status='cs'] {}
 
 [data-store-open-status='cc'],
-[data-store-open-status='tc'] {
-}
+[data-store-open-status='tc'] {}
 
 .aboutLocationContainer,
 .reviewsContainer,
 .servicesPhotosProducts,
-.learnMoreContainer {
-}
+.learnMoreContainer {}
 
-.learnMoreButton {
-}
+.learnMoreButton {}
 
-.learnMoreTitle {
-}
+.learnMoreTitle {}
 
-.learnMoreButtonImage {
-}
+.learnMoreButtonImage {}
 
-.learnMoreWindow {
-}
+.learnMoreWindow {}
 
-.learnMoreContainer[data-expanded='true'] .learnMoreWindow {
-}
+.learnMoreContainer[data-expanded='true'] .learnMoreWindow {}
 
-.learnMoreContainer[data-expanded='true'] .learnMoreButtonImage {
-}
+.learnMoreContainer[data-expanded='true'] .learnMoreButtonImage {}
 
-.aboutStoreTitle {
-}
+.aboutStoreTitle {}
 
-.storeDescription {
-}
+.storeDescription {}
 
-.servicesPhotosProducts {
-}
+.servicesPhotosProducts {}
 
-.storeServicesContainer {
-}
+.storeServicesContainer {}
 
-.storeProductsContainer {
-}
+.storeProductsContainer {}
 
-.storeServicesList {
-}
+.storeServicesList {}
 
-.seasonalText {
-}
+.seasonalText {}
 
-.storeServicesItem {
-}
+.storeServicesItem {}
 
-.storeImagesSection {
-}
+.storeImagesSection {}
 
-.tracks {
-}
+.tracks {}
 
-.train {
-}
+.train {}
 
-.car {
-}
+.car {}
 
-.dotsContainer {
-}
+.dotsContainer {}
 
-.dot {
-}
+.dot {}
 
-.dot[data-active='true'] {
-}
+.dot[data-active='true'] {}
 
-.buttonContainer {
-}
+.buttonContainer {}
 
-.directionButton {
-}
+.directionButton {}
 
-.directionButton[data-point='left'] .buttonImage {
-}
-.directionButton[data-point='right'] .buttonImage {
-}
+.directionButton[data-point='left'] .buttonImage {}
 
-.buttonImage {
-}
+.directionButton[data-point='right'] .buttonImage {}
 
-.reviewsFrame {
-}
+.buttonImage {}
 
-.productsAndServices {
-}
+.reviewsFrame {}
 
-.heroImage {
-}
+.productsAndServices {}
 
-.heroTextContainer {
-}
+.heroImage {}
 
-.storeNameContainer {
-}
+.heroTextContainer {}
 
-.heroTextWrapper {
-}
+.storeNameContainer {}
 
-.heroSubtitle {
-}
+.heroTextWrapper {}
+
+.heroSubtitle {}
 
 .storeGrid,
 .aboutLocationContainer,
 .servicesPhotosProducts,
 .reviewsContainer,
-.learnMoreContainer {
-}
+.learnMoreContainer {}
 
 .storeInfoTitle,
 .nearbyStoresTitle,
 .aboutStoreTitle,
 .reviewsTitle,
 .storeServicesTitle,
-.learnMoreTitle {
-}
+.learnMoreTitle {}
 
 .storeInfoContainer,
-.nearbyStoresContainer {
+.nearbyStoresContainer {}
+
+.mapContainer {}
+
+.nearbyStoreslist {}
+
+.servicesPhotosProducts {}
+
+.storeImagesSection {}
+
+.tracks {}
+
+.car {}
+
+.reviewsFrame {}
+
+.closeAllStores {}
+
+.storeBannerSection {
+  background: var(--ebs-red);
+  color: white;
+  text-align: center;
+  padding: 1rem;
 }
 
-.mapContainer {
+.storeBannerLink {
+  display: block;
 }
 
-.nearbyStoreslist {
+.storeBannerTitle {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-.servicesPhotosProducts {
+.storeBannerSubtitle {
+  font-size: 1.25rem;
+  max-width: 80ch;
+  margin: 0 auto;
 }
 
-.storeImagesSection {
+.shutDownContainer {
+  height: 100%;
+  background: var(--ebs-red);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+  color: white;
 }
 
-.tracks {
+.shutDownTitle {
+  font-size: 1.5rem;
 }
 
-.car {
+.shutDownText {
+  font-size: 1.25rem;
 }
 
-.reviewsFrame {
-}
-
-.closeAllStores {
+.hoursTag {
+  background: var(--ebs-red);
+  padding: 0.25rem;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 1rem;
 }
 
 /* Keep below rules in app, they are illigal in store-theme. - LM */
 
-.mapContainer > div {
+.mapContainer>div {
   border: 1px solid var(--30-dark);
 }
 

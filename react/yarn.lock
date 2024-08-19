@@ -2356,9 +2356,10 @@ end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-"eriksbikeshop.storeinfo@https://ebs24--eriksbikeshop.myvtex.com/_v/private/typings/linked/v1/eriksbikeshop.storeinfo@1.0.0+build1705426139/public/@types/eriksbikeshop.storeinfo":
-  version "1.0.0"
-  resolved "https://ebs24--eriksbikeshop.myvtex.com/_v/private/typings/linked/v1/eriksbikeshop.storeinfo@1.0.0+build1705426139/public/@types/eriksbikeshop.storeinfo#5d24f1b70db185085d926a32ef589f503c765361"
+"eriksbikeshop.storeinfo@https://shopify--eriksbikeshop.myvtex.com/_v/private/typings/linked/v1/eriksbikeshop.storeinfo@1.0.4+build1724087691/public/@types/eriksbikeshop.storeinfo":
+  version "1.0.3"
+  resolved "https://shopify--eriksbikeshop.myvtex.com/_v/private/typings/linked/v1/eriksbikeshop.storeinfo@1.0.4+build1724087691/public/@types/eriksbikeshop.storeinfo"
+  integrity sha512-ZRCf6t2UQ4Q8DdF7ifTmlEROkx1V/XpJoDbIOkwbLBllNalboSKA+MKyMT6BVnIDJ5r8MbSXVHtVVi2aShOifw==
 
 error-ex@^1.3.1:
   version "1.3.2"
@@ -5098,15 +5099,18 @@ verror@1.10.0:
 
 "vtex.device-detector@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.device-detector@0.2.6/public/@types/vtex.device-detector":
   version "0.2.6"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.device-detector@0.2.6/public/@types/vtex.device-detector#3219242fa5c2f14023d33c3549c2d8de93c76d1f"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.device-detector@0.2.6/public/@types/vtex.device-detector"
+  integrity sha512-uGiyfDEhy8p1Omt8Cw2hs98YtRmmE3s8hfSsDO1+0Snh54Nf4v9SzRZKtBynoa6eUy9yEdotNZyui5sB1FoUqA==
 
 "vtex.render-runtime@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.134.2/public/@types/vtex.render-runtime":
   version "8.134.2"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.134.2/public/@types/vtex.render-runtime#ae69e2b2a471291c6c6b155e17510150fbfc2d0e"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.render-runtime@8.134.2/public/@types/vtex.render-runtime"
+  integrity sha512-lehqsIn8JPh8smXTCCRkgs/8ZJzsZKL0lfd6flq79Itr97tq9toYMXgtsuj9zfh3Mq2lgXCUhc8sPPCzCL5zVA==
 
 "vtex.styleguide@http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.9/public/@types/vtex.styleguide":
   version "9.146.9"
-  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.9/public/@types/vtex.styleguide#d1601fedfb665c6173334753171717da64e670bc"
+  resolved "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.styleguide@9.146.9/public/@types/vtex.styleguide"
+  integrity sha512-m0goQx6BF9Ne2DfLRdoqJf0NRMfs1kIogbpL4ZQ/3l1UDvVVMT/oqiw7OcMCDMH8YX08h8HV+h98fopqR+y+8A==
 
 w3c-hr-time@^1.0.1:
   version "1.0.2"

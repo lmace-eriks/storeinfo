@@ -1,6 +1,5 @@
-import React, { ReactChildren, useEffect, useRef, useState, useMemo, useCallback } from "react";
+import React, { ReactChildren, useEffect, useRef, useState, useMemo } from "react";
 import { Link, canUseDOM } from "vtex.render-runtime";
-// import { useDevice } from 'vtex.device-detector';
 
 // Styles
 import styles from "./styles.css";
@@ -24,15 +23,24 @@ interface StoreObject {
   storeAddress: string
   nearbyLocations: string
   closed: boolean
+  shutDown: boolean
   storeLocation: string
   storeDirectionsLink: string
+  hoursTag: string
   aboutHTML: string
   reviewsURL: string
   hero: HeroObject
+  banner?: BannerObject
   storeServices: Array<StoreServicesObject>
   storeProducts: Array<StoreServicesObject>
   storeImages: Array<StoreImageObject>
   seoHTML: string
+}
+
+interface BannerObject {
+  title: string
+  subtitle?: string
+  link?: string
 }
 
 interface HeroObject {
@@ -62,11 +70,13 @@ interface NearbyStoreObject {
 const blankStore: StoreObject = {
   __editorItemTitle: "null",
   closed: false,
+  shutDown: false,
   storeLocation: "",
   storeURL: "",
   nearbyLocations: "",
   storeAddress: "",
   storeDirectionsLink: "",
+  hoursTag: "",
   aboutHTML: "",
   reviewsURL: "",
   hero: { ctaAltText: "", ctaLink: "", ctaText: "", desktopSrc: "", mobileSrc: "", subtitle: "" },
@@ -83,8 +93,6 @@ const defaultServices = ["Bike Repair", "Electric Bike Repair", "Bike Sizing", "
 const defaultProducts = ["Bikes", "Electric Bikes", "Car Racks", "Snowboards *", "Skis *", "Apparel", "Skateboards", "Longboards", "Scooters"];
 
 const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, storeDetails, defaultHero, override, overrideSubtitle, overrideCTAlink, overrideCTAtext, closeAllStores, closeAllStoresText }) => {
-  // const { isMobile } = useDevice();
-
   // State
   const [storeInfo, setStoreInfo] = useState<StoreObject>();
   const [storeOpenStatus, setStoreOpenStatus] = useState("");
@@ -101,6 +109,7 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
   const trainCounter = useRef(0);
 
   useEffect(() => {
+    console.log("New Version")
     if (!openGate.current) return;
     openGate.current = false;
 
@@ -251,18 +260,18 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
     setTrainPosition((carWidth * trainIndex) * -1);
   }, [trainIndex]);
 
-  useEffect(() => {
-    timer.current = setInterval(() => {
-      // Hide this behind an observationIntersection() also - LM
-      if (!pauseTrain) {
-        trainCounter.current = trainCounter.current + 1;
+  // useEffect(() => {
+  //   timer.current = setInterval(() => {
+  //     // Hide this behind an observationIntersection() also - LM
+  //     if (!pauseTrain) {
+  //       trainCounter.current = trainCounter.current + 1;
 
-        if (trainCounter.current <= 15) updateTrainIndex("right");
-      }
-    }, 3000);
+  //       if (trainCounter.current <= 15) updateTrainIndex("right");
+  //     }
+  //   }, 3000);
 
-    return () => clearInterval(timer.current);
-  });
+  //   return () => clearInterval(timer.current);
+  // });
 
   const findStar = (list: any, listType: "string" | "object") => {
     if (!list) return false;
@@ -289,8 +298,61 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
     </section>
   )
 
+  const ShutDown = () => (
+    <section aria-labelledby="shut-down-title" className={styles.shutDownContainer}>
+      <h3 id="shut-down-title" className={styles.shutDownTitle}>This Location Has Been Permanently Shut Down</h3>
+      <div className={styles.shutDownText}>Thank you to the {storeInfo.storeLocation} community for the opportunity to serve you all these years. Please see the list of nearby stores to visit another ERIK'S location.</div>
+    </section>
+  );
+
+  const Announcements = () => {
+    if (!storeInfo.banner) return <></>;
+
+    if (storeInfo.banner.link) {
+      return (
+        <section aria-label="Announcements" className={styles.storeBannerSection}>
+          <a href={storeInfo.banner.link} target="_blank" rel="noreferrer" className={styles.storeBannerLink}>
+            <div className={styles.storeBannerTitle}>{storeInfo.banner.title}</div>
+            {storeInfo.banner.subtitle && <div className={styles.storeBannerSubtitle}>{storeInfo.banner.subtitle}</div>}
+          </a>
+        </section>
+      )
+    } else {
+      return (
+        <section aria-label="Announcements" className={styles.storeBannerSection}>
+          <div className={styles.storeBannerTitle}>{storeInfo.banner.title}</div>
+          {storeInfo.banner.subtitle && <div className={styles.storeBannerSubtitle}>{storeInfo.banner.subtitle}</div>}
+        </section>
+      )
+    }
+  }
+
+  const StoreHoursSection = () => (<>
+    <section aria-labelledby="store-phone-title" className={styles.storePhone}>
+      <h3 id="store-phone-title" className={styles.storePhoneTitle}>Phone Number</h3>
+      <StorePhoneNumber />
+    </section>
+    <section aria-labelledby="store-hours-title" className={styles.storeHours}>
+      {storeInfo.hoursTag && <div className={styles.hoursTag}>{storeInfo.hoursTag}</div>}
+      <div className={styles.hoursTitleContainer}>
+        <h3 id="store-hours-title" className={styles.storeHoursTitle}>Store Hours</h3>
+        <div className={styles.storeOpenStatus} data-store-open-status={storeOpenStatus}>
+          {storeOpenStatus === "os" && `Opening Soon`}
+          {storeOpenStatus === "co" && `Currently OPEN`}
+          {storeOpenStatus === "cs" && `Closing Soon`}
+          {storeOpenStatus === "cc" && `Currently CLOSED`}
+          {storeOpenStatus === "tc" && `Temporarily CLOSED`}
+          {storeOpenStatus === "cas" && <div className={styles.closeAllStores}>{closeAllStoresText}</div>}
+          {storeOpenStatus === "" && ``}
+        </div>
+      </div>
+      <StoreHours />
+    </section>
+  </>)
+
   return (
     <div className={styles.container} data-storecode={storeInfo.__editorItemTitle}>
+      {storeInfo.banner?.title && <Announcements />}
       <section aria-label="Store Name and News" className={styles.heroContainer}>
         <picture>
           <source media="(min-width:1026px)" srcSet={storeInfo.hero.desktopSrc} type="image/jpeg" />
@@ -308,7 +370,7 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
                 <div className={styles.heroSubtitle}>
                   {overrideSubtitle}
                 </div>
-                {overrideCTAlink && <Link to={overrideCTAlink} className={styles.heroCTALink}>{overrideCTAtext}</Link>}
+                {overrideCTAlink && <a href={overrideCTAlink} className={styles.heroCTALink}>{overrideCTAtext}</a>}
               </>
               :
               <>
@@ -317,10 +379,9 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
                     {storeInfo.hero.subtitle || defaultHero.subtitle}
                   </div>}
                 {(storeInfo.hero.ctaText || defaultHero.ctaText) &&
-                  <Link to={storeInfo.hero.ctaLink || defaultHero.ctaLink} aria-label={storeInfo.hero.ctaAltText || defaultHero.ctaAltText} className={styles.heroCTALink}>{storeInfo.hero.ctaText || defaultHero.ctaText}</Link>}
+                  <a href={storeInfo.hero.ctaLink || defaultHero.ctaLink} aria-label={storeInfo.hero.ctaAltText || defaultHero.ctaAltText} className={styles.heroCTALink}>{storeInfo.hero.ctaText || defaultHero.ctaText}</a>}
               </>
             }
-
           </div>
         </div>
       </section>
@@ -332,27 +393,9 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
             <section aria-labelledby="store-address-title" className={styles.storeAddress}>
               <h3 id="store-address-title" className={styles.storeAddressTitle}>Store Address</h3>
               <StoreAddress />
-              <Link href={storeInfo.storeDirectionsLink} target="_blank" rel="noreferrer" className={styles.storeDirectionsLink}>Get Directions</Link>
+              {!storeInfo.shutDown && <Link href={storeInfo.storeDirectionsLink} target="_blank" rel="noreferrer" className={styles.storeDirectionsLink}>Get Directions</Link>}
             </section>
-            <section aria-labelledby="store-phone-title" className={styles.storePhone}>
-              <h3 id="store-phone-title" className={styles.storePhoneTitle}>Phone Number</h3>
-              <StorePhoneNumber />
-            </section>
-            <section aria-labelledby="store-hours-title" className={styles.storeHours}>
-              <div className={styles.hoursTitleContainer}>
-                <h3 id="store-hours-title" className={styles.storeHoursTitle}>Store Hours</h3>
-                <div className={styles.storeOpenStatus} data-store-open-status={storeOpenStatus}>
-                  {storeOpenStatus === "os" && `Opening Soon`}
-                  {storeOpenStatus === "co" && `Currently OPEN`}
-                  {storeOpenStatus === "cs" && `Closing Soon`}
-                  {storeOpenStatus === "cc" && `Currently CLOSED`}
-                  {storeOpenStatus === "tc" && `Temporarily CLOSED`}
-                  {storeOpenStatus === "cas" && <div className={styles.closeAllStores}>{closeAllStoresText}</div>}
-                  {storeOpenStatus === "" && ``}
-                </div>
-              </div>
-              <StoreHours />
-            </section>
+            {!storeInfo.shutDown ? <StoreHoursSection /> : <ShutDown />}
           </div>
         </section>
 
@@ -369,7 +412,7 @@ const StoreInfo: StorefrontFunctionComponent<StoreInfoProps> = ({ children, stor
                 <li key={location.storeLink} className={styles.nearbyStore}>
                   <div className={styles.nearbyStoreName}>{location.__editorItemTitle}</div>
                   <div className={styles.nearbyStoreAddress}>{location.storeAddress}</div>
-                  <Link to={location.storeLink} aria-label={`${location.__editorItemTitle}'s store details`} className={styles.nearbyStoreLink}>Store Details</Link>
+                  <a href={location.storeLink} aria-label={`${location.__editorItemTitle}'s store details`} className={styles.nearbyStoreLink}>Store Details</a>
                 </li>
               ))}
             </ul>
@@ -483,6 +526,11 @@ StoreInfo.schema = {
             type: "boolean",
             default: false
           },
+          shutDown: {
+            title: "Permanently Closed?",
+            type: "boolean",
+            default: false
+          },
           storeLocation: {
             title: "Readable Name",
             type: "string",
@@ -506,7 +554,32 @@ StoreInfo.schema = {
             type: "string",
             description: "Comma sepparated list of store codes."
           },
-
+          banner: {
+            type: "object",
+            properties: {
+              title: {
+                title: "Banner Title",
+                type: "string",
+                description: "Optional.",
+                default: "",
+                widget: { "ui:widget": "textarea" }
+              },
+              subtitle: {
+                title: "Banner Subtitle",
+                type: "string",
+                description: "Optional.",
+                default: "",
+                widget: { "ui:widget": "textarea" }
+              },
+              link: {
+                title: "Banner Link",
+                type: "string",
+                description: "Optional. Opens in new tab.",
+                default: "",
+                widget: { "ui:widget": "textarea" }
+              }
+            }
+          },
           hero: {
             type: "object",
             properties: {
@@ -551,6 +624,12 @@ StoreInfo.schema = {
                 default: ""
               },
             }
+          },
+          hoursTag: {
+            title: "Store Hours Announcement",
+            type: "string",
+            description: "Displays in red box above Store Hours.",
+            widget: { "ui:widget": "textarea" }
           },
           aboutHTML: {
             title: "About Location",

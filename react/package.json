@@ -23,7 +23,7 @@
     "@vtex/tsconfig": "^0.4.4",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.5.1",
-    "eriksbikeshop.storeinfo": "https://ebs24--eriksbikeshop.myvtex.com/_v/private/typings/linked/v1/eriksbikeshop.storeinfo@1.0.0+build1705426139/public/@types/eriksbikeshop.storeinfo",
+    "eriksbikeshop.storeinfo": "https://shopify--eriksbikeshop.myvtex.com/_v/private/typings/linked/v1/eriksbikeshop.storeinfo@1.0.4+build1724087691/public/@types/eriksbikeshop.storeinfo",
     "graphql": "^14.6.0",
     "typescript": "3.9.7",
     "vtex.css-handles": "http://vtex.vtexassets.com/_v/public/typings/v1/vtex.css-handles@0.4.4/public/@types/vtex.css-handles",
